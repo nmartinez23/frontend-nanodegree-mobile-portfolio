@@ -509,37 +509,6 @@ function updatePositions() {
   }
 
 
-
-
-
-
-
-
-  // var items = document.getElementsByClassName('mover');
-  // var phase = Math.sin((document.body.scrollTop / 1250));
-  // for (var i = 0; i < items.length; i++) {
-  //   items[i].style.left = items[i].basicLeft + 100 * (phase + (i % 5)) + 'px';
-  // }
-
-
-  // var cache = document.body.scrollTop;
-  // var arr = [];
-  // for (var i = 0; i < 5; i++) {
-  //   arr.push(Math.sin((cache / 1250) + i));
-  // }
-  // var phase;
-  // for (var j = 0; j < items.length; j++) {
-  //   phase = arr[j % 5];
-  //   // items[j].style.transform = "transformX(" + 100 * phase + " px)";
-  //   items[j].style.left = items[j].basicLeft + 100 * phase + 'px';
-  // }
-
-
-  // var shift = items[i].basicLeft + 100 * (phase + (i % 5)) + 'px';
-    // items[i].style.transform = "translateX("+shift+")";
-
-
-
   // User Timing API to the rescue again. Seriously, it's worth learning.
   // Super easy to create custom metrics.
   window.performance.mark("mark_end_frame");
@@ -557,13 +526,15 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 20; i++) {
+  var height = window.innerHeight;
+  for (var i = 0; i < 24; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
     elem.style.height = "100px";
     elem.style.width = "73.333px";
-    elem.basicLeft = (i % cols) * s;
+    // Changed the basicLeft style to style.left to fix the pizza rendering.
+    elem.style.left = (i % cols) * s + 'px';
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
     document.querySelector("#movingPizzas1").appendChild(elem);
   }
